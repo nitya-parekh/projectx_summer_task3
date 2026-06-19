@@ -1,0 +1,7 @@
+Starting training...
+Epoch 10/50 | Loss: 1.6407
+Epoch 20/50 | Loss: 1.3958
+Epoch 30/50 | Loss: 1.1944
+Epoch 40/50 | Loss: 1.0277
+Epoch 50/50 | Loss: 0.8844
+Training complete! Save these logs for your results folder.
