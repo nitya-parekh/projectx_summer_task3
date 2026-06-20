@@ -1,63 +1,34 @@
-import torch
+import re
+from collections import Counter
 
-class SMILESTokenizer:
+class SimpleTextTokenizer:
     def __init__(self):
-        # The mandatory special tokens every Transformer needs
-        # PAD: Fills empty space so all sentences are the same length
-        # SOS: Start of Sequence (tells the Decoder to start generating)
-        # EOS: End of Sequence (tells the Decoder to stop generating)
-        # UNK: Unknown character fallback
-        self.special_tokens = {'<PAD>': 0, '<SOS>': 1, '<EOS>': 2, '<UNK>': 3}
+        self.vocab = {"<PAD>": 0, "<UNK>": 1}
+        self.inverse_vocab = {0: "<PAD>", 1: "<UNK>"}
         
-        # We will build these dictionaries when we load our dataset
-        self.char_to_id = self.special_tokens.copy()
-        self.id_to_char = {v: k for k, v in self.special_tokens.items()}
-        self.vocab_size = len(self.char_to_id)
-
-    def build_vocab(self, smiles_list):
-        # Scans a list of SMILES strings and assigns a unique ID to every new character
-        for smiles in smiles_list:
-            for char in smiles:
-                if char not in self.char_to_id:
-                    self.char_to_id[char] = self.vocab_size
-                    self.id_to_char[self.vocab_size] = char
-                    self.vocab_size += 1
-
-    def encode(self, smiles_string, max_length=None):
-        # 1. Start with the <SOS> token
-        encoded = [self.char_to_id['<SOS>']]
-        
-        # 2. Convert each chemical character into its numerical ID
-        for char in smiles_string:
-            encoded.append(self.char_to_id.get(char, self.char_to_id['<UNK>']))
+    def build_vocab(self, sentences, max_vocab_size=10000):
+        words = []
+        for sentence in sentences:
+            clean_text = re.sub(r"[^\w\s]", "", sentence.lower())
+            words.extend(clean_text.split())
             
-        # 3. End with the <EOS> token
-        encoded.append(self.char_to_id['<EOS>'])
-        
-        # 4. If a max_length is provided, chop it or pad it with <PAD> (0)
-        if max_length is not None:
-            if len(encoded) > max_length:
-                encoded = encoded[:max_length] # Chop if too long
-            else:
-                encoded = encoded + [self.char_to_id['<PAD>']] * (max_length - len(encoded)) # Pad if too short
-                
-        # Return as a PyTorch tensor ready for the neural network
-        return torch.tensor(encoded, dtype=torch.long)
-
-    def decode(self, token_ids):
-        # Converts the network's numerical output back into a readable SMILES string
-        decoded = []
-        for token in token_ids:
-            # Convert tensor to standard Python integer
-            token_val = token.item() if isinstance(token, torch.Tensor) else token
+        most_common = Counter(words).most_common(max_vocab_size - 2)
+        for idx, (word, _) in enumerate(most_common, start=2):
+            self.vocab[word] = idx
+            self.inverse_vocab[idx] = word
             
-            # Stop translating if we hit the End of Sequence token or Padding
-            if token_val == self.char_to_id['<EOS>'] or token_val == self.char_to_id['<PAD>']:
-                break
-                
-            # Skip the Start of Sequence token in the final readable text
-            if token_val != self.char_to_id['<SOS>']:
-                decoded.append(self.id_to_char.get(token_val, '?'))
-                
-        # Join the characters back into a single string
-        return "".join(decoded)
+    def encode(self, sentence, max_len=32):
+        clean_text = re.sub(r"[^\w\s]", "", sentence.lower())
+        tokens = clean_text.split()
+        
+        # Convert words to IDs, use 1 (<UNK>) if word isn't in vocab
+        encoded = [self.vocab.get(word, 1) for word in tokens[:max_len]]
+        
+        # Padding
+        if len(encoded) < max_len:
+            encoded += [0] * (max_len - len(encoded))
+            
+        return encoded
+
+    def __len__(self):
+        return len(self.vocab)
