@@ -1,7 +1,57 @@
-Starting training...
-Epoch 10/50 | Loss: 1.6407
-Epoch 20/50 | Loss: 1.3958
-Epoch 30/50 | Loss: 1.1944
-Epoch 40/50 | Loss: 1.0277
-Epoch 50/50 | Loss: 0.8844
-Training complete! Save these logs for your results folder.
+Loading SST-2 dataset...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+--- Starting Training ---
+Epoch [1/10] | Loss: nan | Val Accuracy: 0.4800
+Epoch [2/10] | Loss: nan | Val Accuracy: 0.4800
+Epoch [3/10] | Loss: nan | Val Accuracy: 0.4800
+Epoch [4/10] | Loss: nan | Val Accuracy: 0.4800
+Epoch [5/10] | Loss: nan | Val Accuracy: 0.4800
+Epoch [6/10] | Loss: nan | Val Accuracy: 0.4800
+Epoch [7/10] | Loss: nan | Val Accuracy: 0.4800
+Epoch [8/10] | Loss: nan | Val Accuracy: 0.4800
+Epoch [9/10] | Loss: nan | Val Accuracy: 0.4800
+Epoch [10/10] | Loss: nan | Val Accuracy: 0.4800
+
+[+] Done. Save a screenshot of these logs for your results/ folder.
+
+
+Loading SST-2 dataset...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+--- Starting Training ---
+Epoch [1/10] | Loss: 0.7132 | Val Accuracy: 0.4900
+Epoch [2/10] | Loss: 0.6909 | Val Accuracy: 0.4900
+Epoch [3/10] | Loss: 0.6785 | Val Accuracy: 0.4850
+Epoch [4/10] | Loss: 0.6693 | Val Accuracy: 0.5000
+Epoch [5/10] | Loss: 0.6622 | Val Accuracy: 0.5550
+Epoch [6/10] | Loss: 0.6503 | Val Accuracy: 0.5150
+Epoch [7/10] | Loss: 0.6392 | Val Accuracy: 0.5750
+Epoch [8/10] | Loss: 0.6277 | Val Accuracy: 0.5300
+Epoch [9/10] | Loss: 0.6169 | Val Accuracy: 0.5400
+Epoch [10/10] | Loss: 0.5996 | Val Accuracy: 0.5500
+
+[+] Done. Save a screenshot of these logs for your results/ folder.
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+--- Starting Training ---
+Epoch [1/20] | Loss: 0.6917 | Val Accuracy: 0.5520
+Epoch [2/20] | Loss: 0.6681 | Val Accuracy: 0.6060
+Epoch [3/20] | Loss: 0.6539 | Val Accuracy: 0.6140
+Epoch [4/20] | Loss: 0.6331 | Val Accuracy: 0.6400
+Epoch [5/20] | Loss: 0.6111 | Val Accuracy: 0.6520
+Epoch [6/20] | Loss: 0.5917 | Val Accuracy: 0.6940
+Epoch [7/20] | Loss: 0.5628 | Val Accuracy: 0.7200
+Epoch [8/20] | Loss: 0.5344 | Val Accuracy: 0.7200
+Epoch [9/20] | Loss: 0.5074 | Val Accuracy: 0.7300
+Epoch [10/20] | Loss: 0.4809 | Val Accuracy: 0.7000
+Epoch [11/20] | Loss: 0.4463 | Val Accuracy: 0.7220
+Epoch [12/20] | Loss: 0.4221 | Val Accuracy: 0.7380
+Epoch [13/20] | Loss: 0.3950 | Val Accuracy: 0.7340
+Epoch [14/20] | Loss: 0.3670 | Val Accuracy: 0.6980
+Epoch [15/20] | Loss: 0.3508 | Val Accuracy: 0.7220
+Epoch [16/20] | Loss: 0.3268 | Val Accuracy: 0.7280
+Epoch [17/20] | Loss: 0.3156 | Val Accuracy: 0.7420
+Epoch [18/20] | Loss: 0.2996 | Val Accuracy: 0.7160
+Epoch [19/20] | Loss: 0.2790 | Val Accuracy: 0.7440
+Epoch [20/20] | Loss: 0.2551 | Val Accuracy: 0.7440
+
+[+] Done. Save a screenshot of these logs for your results/ folder.
